@@ -1,12 +1,10 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from redis.client import Redis
+from db.connection import RedisConnection
 
 app = FastAPI()
-client = Redis(host="localhost", port=6379)
-client.set("key1", "value1111")
-client.set("key2", "value2222")
-client.set("key3", "value3333")
+client = RedisConnection.filling_redis()
 
 @app.get('/{search_item}')
 async def get_item(search_item: str):
