@@ -27,7 +27,22 @@ class RedisConnection:
     @staticmethod
     def filling_redis():
         client = RedisConnection.get_connection()
-        client.set("key1", "value1234")
-        client.set("key2", "value5678")
-        client.set("key3", "value910")
+        client.hset("Product_1_name", mapping={
+            "description":"Some description",
+            "const": "5000",
+            "image": "Product_1_image.png"
+            }
+        )
+        client.hset("Product_2_name", mapping={
+            "description":"Some description for product_2",
+            "const": "2020",
+            "image": "Product_2_image.png"
+            }
+        )
+        client.hset("Product_1_name", mapping={
+            "description":"Some description about product_3",
+            "const": "7707",
+            "image": "Product_3_image.png"
+            }
+        )
         return client

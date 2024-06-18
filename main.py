@@ -9,7 +9,7 @@ client = RedisConnection.filling_redis()
 @app.get('/{search_item}')
 async def get_item(search_item: str):
     try:
-        value = client.get(search_item)
+        value = client.hget(search_item, "description")
         if value:
             return {"message": f"По ключу {search_item} получено значение {value}"}
         else:
