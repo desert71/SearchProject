@@ -20,4 +20,4 @@ async def get_item(search_item: str):
     
 @app.get('/')
 async def get_item(request: Request):
-    return templates.TemplateResponse(name='base.html', context={"request":request}, status_code=200)
+    return templates.TemplateResponse(name='search.html', context={"request":request}, status_code=200)
