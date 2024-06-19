@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Search</title>
+</head>
+<body>
+    <nav class="flex justify-between my-3">
+        <ul class="flex text-3xl ml-10">
+            <li>Инновационный поиск товаров</li>
+        </ul>
+        <ul class="flex text-lg gap-5 mr-10">
+            <li>Посмотреть код можно <u><a href="https://github.com/desert71/SearchProject">здесь</a></u></li>
+            <li>Написать можно <u><a href="https://t.me/A_Deserdzhio">сюда</a></u></li>
+        </ul>
+    </nav>
+    <hr>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

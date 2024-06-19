@@ -1,10 +1,11 @@
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
 from redis.client import Redis
 from db.connection import RedisConnection
 
 app = FastAPI()
 client = RedisConnection.filling_redis()
+templates = Jinja2Templates(directory="templates")
 
 @app.get('/{search_item}')
 async def get_item(search_item: str):
@@ -18,5 +19,5 @@ async def get_item(search_item: str):
         return {"message": "Ошибка извлечения данных из Redis"}
     
 @app.get('/')
-async def get_item():
-    return FileResponse(path='index.html', status_code=200)
+async def get_item(request: Request):
+    return templates.TemplateResponse(name='base.html', context={"request":request}, status_code=200)
