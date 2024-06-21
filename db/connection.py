@@ -39,7 +39,7 @@ class RedisConnection:
             "image": "Product_2_image.png"
             }
         )
-        client.hset("Product_1_name", mapping={
+        client.hset("Product_3_name", mapping={
             "description":"Some description about product_3",
             "const": "7707",
             "image": "Product_3_image.png"
