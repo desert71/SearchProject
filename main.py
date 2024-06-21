@@ -8,16 +8,17 @@ client = RedisConnection.filling_redis()
 templates = Jinja2Templates(directory="templates")
 
 @app.get('/{search_item}')
-async def get_item(search_item: str):
+async def get_item(request: Request, search_item: str):
     try:
-        value = client.hget(search_item, "description")
-        if value:
-            return {"message": f"По ключу {search_item} получено значение {value}"}
+        value_d = client.hget(search_item, "description")
+        if value_d:
+            return templates.TemplateResponse(name='search.html', context={"request":request, "items":value_d},
+                                              status_code=200)
         else:
             return {"message": f"По ключу {search_item} получено ПУСТОЕ значение"}
     except Exception as ex:
-        return {"message": "Ошибка извлечения данных из Redis"}
+        return {"message": f"Ошибка извлечения данных из Redis {ex}"}
     
-@app.get('/')
-async def get_item(request: Request):
-    return templates.TemplateResponse(name='search.html', context={"request":request}, status_code=200)
+# @app.get('/')
+# async def get_item(request: Request):
+#     return templates.TemplateResponse(name='search.html', context={"request":request}, status_code=200)

@@ -16,5 +16,8 @@
         <input id="search_item" type="text" placeholder="Опишите товар для поиска" class="text-lg">
         <button onclick="searchForItem()" class="border-2 rounded-3xl bg-gray-300 p-3">Поиск товара</button>
     </div>
+    <div class="flex rounded-3 border-2 p-3 mt-5">
+        {{ items }}
+    </div>
 </div>
 {% endblock %}
