@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 2px solid rgb(200, 200, 200);
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+        td,
+        th {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 10px 20px;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="flex justify-center flex-col items-center">
+    <div class="flex my-7 gap-9">
+        <input id="search_item" type="text" placeholder="Опишите товар для поиска" class="text-lg">
+        <button onclick="searchForItem()" class="border-2 rounded-3xl bg-gray-300 p-3">Поиск товара</button>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for title in rows.columns.tolist() %}
+                    <th>{{title}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in range(rows.shape[0]) %}
+                <tr>
+                    {% for item in rows.loc[row] %}
+                        <td>{{item}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+
+        <!-- {% for row in rows %}
+            {{ row }}
+        {% endfor %} -->
+        <!-- {{rows.columns}} -->
+    </table>
+    
+</div>
+{% endblock %}
